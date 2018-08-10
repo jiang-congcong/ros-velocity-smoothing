@@ -1,0 +1,19 @@
+
+在move_base节点启动前启动smoother。跟踪它的启动脚本
+
+move_base.launch 
+<!-- 
+    ROS navigation stack with velocity smoother and safety (reactive) controller
+-->
+<launch>
+  <include file="$(find turtlebot_navigation)/launch/includes/velocity_smoother.launch.xml"/>
+
+
+
+
+
+~raw_cmd_vel (geometry_msgs/Twist)：输入的速度命令
+~odometry (nav_msgs/Odometry):接收里程计信息，确保下发的运动命令没有大的跳跃。根据feedback参数配置
+~robot_cmd_vel (geometry_msgs/Twist):接受robot 命令信息，确保下发的运动命令没有大的跳跃。根据feedback参数配置
+
+~smooth_cmd_vel (geometry_msgs/Twist):发出来的命令，通常会将其remap到cmd_vel_mux订阅的运动命令topic上
